@@ -1,0 +1,701 @@
+guan_ying_mo_shi:
+  alias: "\U0001F3AC 观影模式"
+  mode: single
+  sequence:
+  - data:
+      entity_id: script.dangbei_power
+    action: script.turn_on
+  - delay: 00:00:10
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_up
+  - delay: 00:00:01
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_ok
+  - delay: 00:00:02
+  - action: media_player.turn_on
+    target:
+      entity_id: media_player.ke_ting_tv_2
+    continue_on_error: true
+  - repeat:
+      count: 4
+      sequence:
+      - data:
+          entity_id: switch.0xa4c138c7fba090ed
+        action: switch.turn_on
+      - delay: 00:00:03
+  - if:
+    - condition: state
+      entity_id: media_player.denon_avr_x4700h
+      state: 'off'
+    then:
+    - data:
+        entity_id: script.denon_power
+      action: script.turn_on
+    - delay: 00:00:03
+  - data:
+      entity_id: media_player.denon_avr_x4700h
+      source: Media Player
+    action: media_player.select_source
+  - action: switch.turn_on
+    data:
+      entity_id:
+      - switch.san_lu_fu_he_kai_guan_zt_2_switch_1
+      - switch.san_lu_fu_he_kai_guan_zt_2_switch_2
+      - switch.san_lu_fu_he_kai_guan_zt_2_switch_3
+      - switch.san_lu_fu_he_kai_guan_zt_switch_2
+      - switch.san_lu_fu_he_kai_guan_zt_switch_3
+  - wait_template: '{{ states(''light.huan_deng_72'') != ''unavailable'' and states(''light.huan_deng_73'')
+      != ''unavailable'' and states(''light.huan_deng_74'') != ''unavailable'' and
+      states(''light.huan_deng_75'') != ''unavailable'' and states(''light.huan_deng_76'')
+      != ''unavailable'' and states(''light.huan_deng_77'') != ''unavailable'' and
+      states(''light.huan_deng_78'') != ''unavailable'' and states(''light.huan_deng_79'')
+      != ''unavailable'' and states(''light.huan_deng_80'') != ''unavailable'' and
+      states(''light.cha_ji_deng_86'') != ''unavailable'' and states(''light.cha_ji_deng_87'')
+      != ''unavailable'' and states(''light.cha_ji_deng_88'') != ''unavailable'' and
+      states(''light.can_deng_83'') != ''unavailable'' and states(''light.can_deng_84'')
+      != ''unavailable'' and states(''light.can_deng_85'') != ''unavailable'' and
+      states(''light.bqshuang_se_deng_dai_z5005w_10'') != ''unavailable'' and states(''light.yi_lou_guo_dao_68'')
+      != ''unavailable'' and states(''light.yi_lou_guo_dao_69'') != ''unavailable''
+      and states(''light.yi_lou_guo_dao_70'') != ''unavailable'' and states(''light.yi_lou_guo_dao_71'')
+      != ''unavailable'' and states(''light.ba_tai_66'') != ''unavailable'' and states(''light.ba_tai_67'')
+      != ''unavailable'' }}'
+    timeout: 00:01:40
+    continue_on_timeout: true
+  - data:
+      entity_id:
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_76
+    action: light.turn_off
+  - data:
+      entity_id:
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.bqshuang_se_deng_dai_z5005w_10
+      brightness_pct: 15
+    action: light.turn_on
+  - data:
+      entity_id: switch.quan_wu_zi_gua_ying_adaptive_lighting_quan_wu_zi_gua_ying
+      lights:
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_76
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.ba_tai_66
+      - light.ba_tai_67
+      manual_control: true
+    action: adaptive_lighting.set_manual_control
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.ba_tai_66
+      - light.ba_tai_67
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+  - data:
+      entity_id: cover.juan_lian_curtain
+    action: cover.close_cover
+  - data:
+      entity_id: cover.ke_ting_chuang_lian
+    action: cover.close_cover
+guan_ying_jie_shu:
+  alias: "\U0001F3AC 观影结束"
+  mode: single
+  sequence:
+  - if:
+    - condition: sun
+      before: sunset
+    then:
+    - data:
+        entity_id: cover.juan_lian_curtain
+      action: cover.open_cover
+    - data:
+        entity_id: cover.ke_ting_chuang_lian
+      action: cover.open_cover
+  - action: media_player.turn_off
+    target:
+      entity_id: media_player.ke_ting_tv_2
+    continue_on_error: true
+  - data:
+      entity_id: script.dangbei_power
+    action: script.turn_on
+    continue_on_error: true
+  - data:
+      entity_id:
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.ba_tai_66
+      - light.ba_tai_67
+      - light.huan_deng_76
+    action: light.turn_on
+  - data:
+      entity_id: switch.quan_wu_zi_gua_ying_adaptive_lighting_quan_wu_zi_gua_ying
+      lights:
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_76
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.ba_tai_66
+      - light.ba_tai_67
+      manual_control: false
+    action: adaptive_lighting.set_manual_control
+  - data:
+      entity_id: switch.quan_wu_zi_gua_ying_adaptive_lighting_quan_wu_zi_gua_ying
+      lights:
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_76
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.ba_tai_66
+      - light.ba_tai_67
+      turn_on_lights: true
+      transition: 10
+    action: adaptive_lighting.apply
+  - data:
+      entity_id: media_player.denon_avr_x4700h
+    action: media_player.turn_off
+    continue_on_error: true
+  - repeat:
+      count: 4
+      sequence:
+      - data:
+          entity_id: switch.0xa4c138c7fba090ed
+        action: switch.turn_off
+      - delay: 00:00:03
+quan_wu_guan_deng:
+  alias: 全屋关灯
+  description: 关闭全部灯光（Box-3 Dashboard 用）
+  sequence:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.ba_tai_66
+      - light.ba_tai_67
+      - light.bei_yang_tai_deng_104
+      - light.bei_yang_tai_deng_105
+      - light.bei_yang_tai_deng_106
+      - light.bei_yang_tai_deng_107
+      - light.bing_xiang
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.bqshuang_se_deng_dai_z5005w_3
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_120
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_121
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_122
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_123
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_128
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_129
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_130
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_131
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_132
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_133
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_134
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_135
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_64
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_65
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.chuang_chuang_ji_deng_dai_45
+      - light.chuang_ju_deng_44
+      - light.chuang_lian_deng_dai
+      - light.chuang_lian_deng_dai_2
+      - light.chuang_lian_deng_dai_8
+      - light.chuang_tai
+      - light.deng_dai_9
+      - light.er_lou_guo_dao_deng_108
+      - light.er_lou_guo_dao_deng_110
+      - light.er_lou_guo_dao_deng_111
+      - light.esp32_s3_box_3_lcd_backlight
+      - light.huan_chuang_62
+      - light.huan_chuang_you_50
+      - light.huan_chuang_zhong_47
+      - light.huan_chuang_zuo_49
+      - light.huan_deng_100
+      - light.huan_deng_101
+      - light.huan_deng_102
+      - light.huan_deng_103
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_76
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.huan_ju_chuang_60
+      - light.huan_ju_you_51
+      - light.huan_ju_you_63
+      - light.huan_ju_zhong_46
+      - light.huan_ju_zhong_59
+      - light.huan_ju_zuo_48
+      - light.huan_men_58
+      - light.huan_tou_61
+      - light.lou_ti_deng_109
+      - light.lou_ti_deng_112
+      - light.lou_ti_deng_113
+      - light.lou_ti_deng_114
+      - light.men_deng_96
+      - light.men_deng_97
+      - light.she_deng
+      - light.she_deng_98
+      - light.she_deng_99
+      - light.tai_pen
+      - light.yang_tai_deng_89
+      - light.yang_tai_deng_90
+      - light.yang_tai_deng_dai_7
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.zao
+      - light.zhong_43
+      - light.zhong_chuang_deng_55
+      - light.zhong_yang
+      - light.zhong_you_deng_41
+      - light.zhong_you_deng_52
+      - light.zhong_zhong_deng_54
+      - light.zhong_zhong_deng_56
+      - light.zhong_zhuo_deng_57
+      - light.zhong_zuo_deng_42
+      - light.zhong_zuo_deng_53
+      - light.zhu_deng_dai
+  mode: single
+echo_say:
+  alias: Echo Say (委托 Fast)
+  mode: restart
+  fields:
+    message:
+      description: 播报文本
+      example: 晚上好，这里是家庭播报
+  sequence:
+  - action: script.echo_say_fast
+    data:
+      message: '{{ message }}'
+dangbei_power:
+  alias: 投影电源
+  description: 当贝投影 电源开关（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_power
+  mode: single
+dangbei_home:
+  alias: 投影主页
+  description: 当贝投影 投影主页（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_home
+  mode: single
+dangbei_right:
+  alias: 投影向右
+  description: 当贝投影 投影向右（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_right
+  mode: single
+dangbei_back:
+  alias: 投影返回
+  description: 当贝投影 投影返回（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_back
+  mode: single
+denon_power:
+  alias: 天龙电源
+  description: 当贝投影 天龙电源（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: denon_power
+  mode: single
+dangbei_up:
+  alias: 投影向上
+  description: 当贝投影 投影向上（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_up
+  mode: single
+dangbei_vol_up:
+  alias: 投影音量加
+  description: 当贝投影 投影音量加（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_vol_up
+  mode: single
+dangbei_vol_down:
+  alias: 投影音量减
+  description: 当贝投影 投影音量减（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_vol_down
+  mode: single
+dangbei_left:
+  alias: 投影向左
+  description: 当贝投影 投影向左（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_left
+  mode: single
+dangbei_down:
+  alias: 投影向下
+  description: 当贝投影 投影向下（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_down
+  mode: single
+dangbei_ok:
+  alias: 投影确认
+  description: 当贝投影 投影确认（RM4 IR）
+  sequence:
+  - action: remote.send_command
+    target:
+      entity_id: remote.rm4_pro_ke_ting
+    data:
+      device: infrared
+      command: dangbei_ok
+  mode: single
+tian_long_bo_bao:
+  alias: 天龙播报声场
+  description: 仅用于语音播报:切天龙MCH STEREO,主音箱未通电也有声音
+  sequence:
+  - action: media_player.select_sound_mode
+    target:
+      entity_id: media_player.denon_avr_x4700h
+    data:
+      sound_mode: MCH STEREO
+  mode: single
+zhu_wo_guan_deng:
+  alias: 主卧关灯
+  sequence:
+  - action: light.turn_off
+    data:
+      entity_id:
+      - light.chuang_lian_deng_dai
+      - light.huan_chuang_zhong_47
+      - light.huan_chuang_zuo_49
+      - light.huan_chuang_you_50
+      - light.huan_ju_zhong_46
+      - light.huan_ju_zuo_48
+      - light.huan_ju_you_51
+      - light.zhong_you_deng_52
+      - light.zhong_zuo_deng_53
+      - light.zhong_zhong_deng_54
+shu_fang_guan_deng:
+  alias: 书房关灯
+  sequence:
+  - action: light.turn_off
+    data:
+      entity_id:
+      - light.chuang_lian_deng_dai_2
+      - light.huan_men_58
+      - light.huan_ju_zhong_59
+      - light.huan_ju_chuang_60
+      - light.huan_tou_61
+      - light.huan_chuang_62
+      - light.huan_ju_you_63
+      - light.zhong_chuang_deng_55
+      - light.zhong_zhong_deng_56
+      - light.zhong_zhuo_deng_57
+chu_fang_guan_deng:
+  alias: 厨房关灯
+  sequence:
+  - target:
+      entity_id:
+      - light.chu_fang_deng_91
+      - light.chu_fang_deng_92
+      - light.chu_fang_deng_93
+      - light.chu_fang_deng_94
+      - light.chu_fang_deng_95
+    action: light.turn_off
+chu_fang_kai_deng:
+  alias: 厨房开灯
+  sequence:
+  - target:
+      entity_id:
+      - light.chu_fang_deng_91
+      - light.chu_fang_deng_92
+      - light.chu_fang_deng_93
+      - light.chu_fang_deng_94
+      - light.chu_fang_deng_95
+    action: light.turn_on
+echo_say_fast:
+  alias: Echo Say Fast (单次合成渐进流)
+  mode: restart
+  fields:
+    message:
+      description: 播报文本
+      example: 晚上好，这里是家庭播报
+  sequence:
+  - variables:
+      jid: ha-{{ (now().timestamp() * 1000) | int }}
+      fast_players: '{% set r = states(''assist_satellite.esp32_s3_box_3_assist_satellite'')
+        == ''responding'' %}media_player.homatics,media_player.shu_fang_2{{ '''' if
+        r else '',media_player.ke_ting_esp32_s3_box_3_648870'' }}{{ '''' if states(''assist_satellite.01_box_chu_fang_1666ec_assist_satellite'')
+        == ''responding'' else '',media_player.01_box_chu_fang_1666ec'' }}'
+      fast_url: http://ANNOUNCE_PROXY_HOST:50100/play?j={{ jid }}&players={{ fast_players
+        }}&key=CHANGE_ME_ANNOUNCE_API_KEY&text={{ message | urlencode }}
+      box_responding: '{{ states(''assist_satellite.esp32_s3_box_3_assist_satellite'')
+        == ''responding'' }}'
+      kitchen_responding: '{{ states(''assist_satellite.01_box_chu_fang_1666ec_assist_satellite'')
+        == ''responding'' }}'
+  - target:
+      entity_id: switch.esp32_s3_box_3_mute
+    action: switch.turn_on
+  - if: '{{ states("media_player.homatics") == "off" }}'
+    then:
+    - target:
+        entity_id: media_player.homatics
+      action: media_player.turn_on
+    - wait_for_trigger:
+      - trigger: state
+        entity_id: media_player.homatics
+        to: 'on'
+      timeout: 00:00:25
+      continue_on_timeout: true
+    - delay: 00:00:05
+    continue_on_error: true
+  - repeat:
+      for_each:
+      - media_player.homatics
+      - media_player.shu_fang_2
+      sequence:
+      - target:
+          entity_id: '{{ repeat.item }}'
+        action: media_player.clear_playlist
+        continue_on_error: true
+      - target:
+          entity_id: '{{ repeat.item }}'
+        action: media_player.media_stop
+        continue_on_error: true
+      - target:
+          entity_id: '{{ repeat.item }}'
+        data:
+          media_content_type: music
+          media_content_id: '{{ fast_url }}'
+          enqueue: replace
+        action: media_player.play_media
+        continue_on_error: true
+  - data:
+      message: '{{ message }}'
+      data:
+        type: announce
+    action: notify.alexa_media_echo_spot
+  - if: '{{ box_responding != ''True'' }}'
+    then:
+    - target:
+        entity_id: media_player.ke_ting_esp32_s3_box_3_648870
+      action: media_player.media_stop
+      continue_on_error: true
+    - target:
+        entity_id: media_player.ke_ting_esp32_s3_box_3_648870
+      data:
+        media_content_type: music
+        media_content_id: '{{ fast_url }}'
+        enqueue: replace
+      action: media_player.play_media
+      continue_on_error: true
+  - if: '{{ kitchen_responding != ''True'' }}'
+    then:
+    - target:
+        entity_id: media_player.01_box_chu_fang_1666ec
+      action: media_player.media_stop
+      continue_on_error: true
+    - target:
+        entity_id: media_player.01_box_chu_fang_1666ec
+      data:
+        media_content_type: music
+        media_content_id: '{{ fast_url }}'
+        enqueue: replace
+      action: media_player.play_media
+      continue_on_error: true
+  - wait_template: '{{ state_attr("sensor.announce_fast", "job") == jid and states("sensor.announce_fast")
+      == "playing" }}'
+    timeout: 00:00:06
+    continue_on_timeout: true
+  - variables:
+      fast_ok: '{{ state_attr("sensor.announce_fast", "job") == jid }}'
+  - if: '{{ not fast_ok }}'
+    then:
+    - repeat:
+        for_each:
+        - media_player.homatics
+        - media_player.shu_fang
+        sequence:
+        - target:
+            entity_id: '{{ repeat.item }}'
+          action: media_player.media_stop
+          continue_on_error: true
+        - target:
+            entity_id: '{{ repeat.item }}'
+          data:
+            media_content_type: media_source
+            media_content_id: media-source://tts/tts.f5tts?message={{ message | urlencode
+              }}
+            enqueue: replace
+          action: media_player.play_media
+          continue_on_error: true
+    - if: '{{ not fast_ok and box_responding != ''True'' }}'
+      then:
+      - target:
+          entity_id: media_player.ke_ting_esp32_s3_box_3_648870
+        action: media_player.media_stop
+        continue_on_error: true
+      - target:
+          entity_id: media_player.ke_ting_esp32_s3_box_3_648870
+        data:
+          media_content_type: media_source
+          media_content_id: media-source://tts/tts.f5tts?message={{ message | urlencode
+            }}
+          enqueue: replace
+        action: media_player.play_media
+        continue_on_error: true
+    - if: '{{ not fast_ok and kitchen_responding != ''True'' }}'
+      then:
+      - target:
+          entity_id: media_player.01_box_chu_fang_1666ec
+        action: media_player.media_stop
+        continue_on_error: true
+      - target:
+          entity_id: media_player.01_box_chu_fang_1666ec
+        data:
+          media_content_type: media_source
+          media_content_id: media-source://tts/tts.f5tts?message={{ message | urlencode
+            }}
+          enqueue: replace
+        action: media_player.play_media
+        continue_on_error: true
+  - wait_template: '{{ state_attr("sensor.announce_fast", "job") != jid or states("sensor.announce_fast")
+      == "idle" }}'
+    timeout: '{{ [25, (((message | length) * 0.25) + 15) | int] | max }}'
+    continue_on_timeout: true
+  - delay: 00:00:01
+  - target:
+      entity_id: switch.esp32_s3_box_3_mute
+    action: switch.turn_off

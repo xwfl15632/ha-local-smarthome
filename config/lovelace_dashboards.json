@@ -1,0 +1,1652 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "panel": true,
+          "title": "💡 全屋光控",
+          "path": "light",
+          "icon": "mdi:lightbulb-group",
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "mode": "vertical",
+              "cards": [
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🛋️ 客厅",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_2_switch_1",
+                            "name": "供电 · 环灯72-80+灯带",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_72"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_73"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_74"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_75"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_76"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_77"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_78"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_79"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_80"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bqshuang_se_deng_dai_z5005w_10",
+                            "name": "客厅灯带"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_2_switch_3",
+                            "name": "供电 · 茶几灯86-88",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.cha_ji_deng_86"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.cha_ji_deng_87"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.cha_ji_deng_88"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_switch_1",
+                            "name": "备用回路（未接灯）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "script.guan_ying_mo_shi",
+                            "name": "观影模式",
+                            "icon": "mdi:movie-open",
+                            "tap_action": {
+                              "action": "perform-action",
+                              "perform_action": "script.guan_ying_mo_shi"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "script.guan_ying_jie_shu",
+                            "name": "观影结束",
+                            "icon": "mdi:movie-off",
+                            "tap_action": {
+                              "action": "perform-action",
+                              "perform_action": "script.guan_ying_jie_shu"
+                            }
+                          },
+                          {
+                            "type": "entity",
+                            "entity": "camera.living_room_clear"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 1,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.ke_ting_chuang_lian",
+                            "name": "客厅窗帘"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🍽️ 餐厅",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_2_switch_2",
+                            "name": "供电 · 餐灯83-85",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.can_deng_83"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.can_deng_84"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.can_deng_85"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 1,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.juan_lian_curtain"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🍸 吧台",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_switch_2",
+                            "name": "供电 · 吧台66-67",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.ba_tai_66"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.ba_tai_67"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🍳 厨房",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.yi_lu_fu_he_kai_guan_zt_2_switch_1",
+                            "name": "供电 · 厨房灯91-95（5盏）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chu_fang_deng_91",
+                            "name": "厨房灯 91"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chu_fang_deng_92",
+                            "name": "厨房灯 92"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chu_fang_deng_93",
+                            "name": "厨房灯 93"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chu_fang_deng_94",
+                            "name": "厨房灯 94"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chu_fang_deng_95",
+                            "name": "厨房灯 95"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🌿 阳台",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.yi_lu_fu_he_kai_guan_zt_switch_1",
+                            "name": "供电 · 阳台灯89-90+灯带7（3盏）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yang_tai_deng_89"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yang_tai_deng_90"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yang_tai_deng_dai_7"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🛌 客卧",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_5_switch_1",
+                            "name": "供电 · 一路（待确认）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_5_switch_2",
+                            "name": "供电 · 二路（待确认）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.men_deng_96"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.men_deng_97"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.she_deng_98"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.she_deng_99"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.she_deng"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chuang_lian_deng_dai_8"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_100"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_101"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_102"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_deng_103"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.deng_dai_9"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 2,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_sha_curtain_4"
+                          },
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_lian_curtain_5"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🚪 一楼过道",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.san_lu_fu_he_kai_guan_zt_switch_3",
+                            "name": "供电 · 过道68-71",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yi_lou_guo_dao_68"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yi_lou_guo_dao_69"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yi_lou_guo_dao_70"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.yi_lou_guo_dao_71"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🚽 一楼卫生间",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_7_switch_1",
+                            "name": "供电 · 镜前灯（非智能）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_7_switch_2",
+                            "name": "供电 · 普通射灯（非智能）",
+                            "icon": "mdi:power-socket"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🛏️ 主卧",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.men_kou_kai_guan_switch_1",
+                            "name": "A路 · 门口（环窗/环柜+灯带）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.chuang_tou_kai_guan_switch_1",
+                            "name": "A路 · 床头（环窗/环柜+灯带）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_zhong_46"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_chuang_zhong_47"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_zuo_48"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_chuang_zuo_49"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_chuang_you_50"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_you_51"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chuang_lian_deng_dai",
+                            "name": "窗帘灯带"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhu_deng_dai",
+                            "name": "主灯带"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.men_kou_kai_guan_switch_2",
+                            "name": "B路 · 门口（中央主灯）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.chuang_tou_kai_guan_switch_2",
+                            "name": "B路 · 床头（中央主灯）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_you_deng_52"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_zuo_deng_53"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_zhong_deng_54"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 2,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_sha_curtain_2"
+                          },
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_lian_curtain_2"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🧸 次卧",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_2_switch_1",
+                            "name": "供电 · 一路（待确认）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_2_switch_2",
+                            "name": "供电 · 二路（待确认）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_you_deng_41"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_zuo_deng_42"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_43"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chuang_ju_deng_44"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chuang_chuang_ji_deng_dai_45"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bqshuang_se_deng_dai_z5005w_3"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_kai_er_chang_jing_zt_2_switch_1",
+                            "name": "二开二场景 · 开关1（待确认）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_kai_er_chang_jing_zt_2_switch_2",
+                            "name": "二开二场景 · 开关2（待确认）",
+                            "icon": "mdi:power-socket"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 2,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_sha_curtain"
+                          },
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.chuang_lian_curtain"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 📚 书房",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_kai_er_chang_jing_zt_4_switch_1",
+                            "name": "供电 · 中窗/中中/中桌 55-57",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_chuang_deng_55"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_zhong_deng_56"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.zhong_zhuo_deng_57"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_kai_er_chang_jing_zt_4_switch_2",
+                            "name": "供电 · 环门/环柜/环窗 58-63+窗帘灯带",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_men_58"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_zhong_59"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_chuang_60"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_tou_61"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_chuang_62"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.huan_ju_you_63"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.chuang_lian_deng_dai_2",
+                            "name": "窗帘灯带"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 2,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.shu_fang_chuang_sha"
+                          },
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.shu_fang_chuang_lian"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🪜 二楼过道及楼梯",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lou_er_kai_er_chang_jing_switch_2",
+                            "name": "供电 · 过道108-111+楼梯109/112-114（7盏）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.er_lou_guo_dao_deng_108"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.er_lou_guo_dao_deng_110"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.er_lou_guo_dao_deng_111"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.lou_ti_deng_109"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.lou_ti_deng_112"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.lou_ti_deng_113"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.lou_ti_deng_114"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🚽 二楼卫生间",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_6_switch_1",
+                            "name": "供电 · 镜前灯（非智能）",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lu_fu_he_kai_guan_zt_6_switch_2",
+                            "name": "供电 · 普通射灯（非智能）",
+                            "icon": "mdi:power-socket"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                },
+                {
+                  "type": "custom:mod-card",
+                  "card": {
+                    "type": "vertical-stack",
+                    "mode": "vertical",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "### 🌤️ 北阳台",
+                        "card_mod": {
+                          "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n  border-bottom: 1px solid rgba(127,127,127,0.18);\n  padding: 0 0 6px 0;\n  margin-bottom: 8px;\n}"
+                        }
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 8,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "switch.er_lou_er_kai_er_chang_jing_switch_1",
+                            "name": "供电 · 楼梯面板1路 → 北阳台104-107",
+                            "icon": "mdi:power-socket"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bei_yang_tai_deng_104"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bei_yang_tai_deng_105"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bei_yang_tai_deng_106"
+                          },
+                          {
+                            "type": "custom:mushroom-light-card",
+                            "entity": "light.bei_yang_tai_deng_107"
+                          }
+                        ],
+                        "square": false
+                      },
+                      {
+                        "type": "grid",
+                        "columns": 1,
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-cover-card",
+                            "entity": "cover.asdchuang_lian_dian_ji_16_curtain"
+                          }
+                        ],
+                        "square": false
+                      }
+                    ]
+                  },
+                  "card_mod": {
+                    "style": "ha-card {\n  background-color: var(--card-background-color, #1b1b1f);\n  border: 1px solid rgba(127,127,127,0.30);\n  border-left: 4px solid var(--accent-color, #03a9f4);\n  border-radius: 12px;\n  padding: 10px;\n  margin-bottom: 10px;\n} width: 100%;"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "title": "🎬 媒体控制",
+          "path": "media",
+          "icon": "mdi:remote",
+          "sections": [
+            {
+              "cards": [
+                {
+                  "type": "button",
+                  "entity": "script.guan_ying_mo_shi",
+                  "name": "🎬 观影模式",
+                  "icon": "mdi:movie-open",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "script.guan_ying_mo_shi"
+                  },
+                  "show_state": false
+                },
+                {
+                  "type": "button",
+                  "entity": "script.guan_ying_jie_shu",
+                  "name": "🎬 观影结束",
+                  "icon": "mdi:movie-off",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "script.guan_ying_jie_shu"
+                  },
+                  "show_state": false
+                },
+                {
+                  "type": "heading",
+                  "heading": "媒体"
+                },
+                {
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.ke_ting_tv"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.denon_avr_x4700h"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.denon_avr_x4700h_2"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.homatics_2"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.tcl_75q10l_pro_5edc_192_168_50_153_2"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "remote.homatics",
+                      "name": "遥控器",
+                      "icon": "mdi:remote"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "remote.tcl_75q10l_pro_5edc_192_168_50_153",
+                      "name": "遥控器",
+                      "icon": "mdi:remote"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.xu_s_echo_spot"
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.01_box_chu_fang_1666ec"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    "cover.tou_ying_mu_zhi_neng_kong_zhi_xi_tong_curtain"
+                  ],
+                  "title": "投影幕"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "title": "📦 其他",
+          "path": "other",
+          "icon": "mdi:view-grid",
+          "sections": [
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "其他"
+                },
+                {
+                  "type": "grid",
+                  "columns": 4,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_on",
+                      "name": "Turn On",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_on"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_off",
+                      "name": "Turn Off",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_off"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.wen_xin_dong_ri",
+                      "name": "温馨冬日",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.wen_xin_dong_ri"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_on_2",
+                      "name": "Turn On",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_on_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_off_2",
+                      "name": "Turn Off",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_off_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_on_3",
+                      "name": "Turn On",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_on_3"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_off_3",
+                      "name": "Turn Off",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_off_3"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_on_4",
+                      "name": "Turn On",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_on_4"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_off_4",
+                      "name": "Turn Off",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_off_4"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_on_5",
+                      "name": "Turn On",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_on_5"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.turn_off_5",
+                      "name": "Turn Off",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.turn_off_5"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_lian",
+                      "name": "guan_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_lian_2",
+                      "name": "guan_lian_2",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_lian_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai_lian",
+                      "name": "kai_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_lian_3",
+                      "name": "guan_lian_3",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_lian_3"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai_lian_2",
+                      "name": "kai_lian_2",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai_lian_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.dan_can_deng",
+                      "name": "单餐灯",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.dan_can_deng"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan",
+                      "name": "guan",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai",
+                      "name": "kai",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.lou_ti_deng",
+                      "name": "lou_ti_deng",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.lou_ti_deng"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.dan_can_deng_2",
+                      "name": "dan_can_deng_2",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.dan_can_deng_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.dan_deng_dai",
+                      "name": "单灯带",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.dan_deng_dai"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.zhu_wo_deng_quan_guan",
+                      "name": "主卧灯全关",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.zhu_wo_deng_quan_guan"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_bi_chuang_lian",
+                      "name": "guan_bi_chuang_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_bi_chuang_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.da_kai_chuang_lian",
+                      "name": "da_kai_chuang_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.da_kai_chuang_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_chuang_lian",
+                      "name": "guan_chuang_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_chuang_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai_chuang_lian",
+                      "name": "kai_chuang_lian",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai_chuang_lian"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai_guan_deng_dai",
+                      "name": "kai_guan_deng_dai",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai_guan_deng_dai"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.chuang_tou_deng_guan",
+                      "name": "chuang_tou_deng_guan",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.chuang_tou_deng_guan"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.kai_guan_chuang_tou_deng",
+                      "name": "kai_guan_chuang_tou_deng",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.kai_guan_chuang_tou_deng"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.guan_ying",
+                      "name": "guan_ying",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.guan_ying"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.lou_ti_deng_2",
+                      "name": "lou_ti_deng_2",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.lou_ti_deng_2"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.bei_yang_tai_chuang_lian_guan",
+                      "name": "bei_yang_tai_chuang_lian_guan",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.bei_yang_tai_chuang_lian_guan"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.bei_yang_tai_chuang_lian_kai",
+                      "name": "bei_yang_tai_chuang_lian_kai",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.bei_yang_tai_chuang_lian_kai"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.ke_ting_deng_quan_guan",
+                      "name": "ke_ting_deng_quan_guan",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.ke_ting_deng_quan_guan"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "scene.ke_ting_deng_quan_kai",
+                      "name": "ke_ting_deng_quan_kai",
+                      "icon": "mdi:lightbulb-on",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "scene.turn_on",
+                        "target": {
+                          "entity_id": "scene.ke_ting_deng_quan_kai"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    "sensor.sun_next_dawn",
+                    "sensor.sun_next_dusk",
+                    "sensor.sun_next_midnight",
+                    "sensor.sun_next_noon",
+                    "sensor.sun_next_rising",
+                    "sensor.sun_next_setting",
+                    "sensor.tou_ying_mu_zhi_neng_kong_zhi_xi_tong_last_operation_duration"
+                  ],
+                  "title": "传感器"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    "select.chuang_sha_motor_mode",
+                    "select.chuang_lian_motor_mode",
+                    "select.chuang_sha_motor_mode_2",
+                    "select.chuang_lian_motor_mode_2",
+                    "select.chuang_sha_motor_mode_3",
+                    "select.chuang_lian_motor_mode_3",
+                    "select.chuang_lian_motor_mode_4",
+                    "select.juan_lian_motor_mode",
+                    "select.chuang_sha_motor_mode_4",
+                    "select.chuang_lian_motor_mode_5",
+                    "select.tou_ying_mu_zhi_neng_kong_zhi_xi_tong_motor_mode",
+                    "select.asdchuang_lian_dian_ji_16_motor_mode"
+                  ],
+                  "title": "模式"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "📹 摄像头",
+          "path": "camera",
+          "icon": "mdi:cctv",
+          "type": "masonry",
+          "cards": [
+            {
+              "type": "markdown",
+              "content": "### 📹 客厅摄像头（Reolink E1 Zoom, 10.0.0.246）\n**内网**：直连 HA `10.0.0.185:8123` ｜ **外网**：经 VPS 转发（同一面板，出门也能看）。\n「清晰」卡是**实时流**，点开可放大/全屏；「流畅」卡是刷新快照，省流量。\n说「关闭摄像头」= 开隐私模式（画面遮蔽、录像停），说「打开摄像头」恢复。"
+            },
+            {
+              "type": "picture-entity",
+              "entity": "camera.living_room_clear",
+              "name": "清晰（实时流）",
+              "camera_view": "live",
+              "aspect_ratio": "16:9",
+              "show_state": false
+            },
+            {
+              "type": "picture-entity",
+              "entity": "camera.living_room_fluent",
+              "name": "流畅",
+              "camera_view": "auto",
+              "aspect_ratio": "16:9",
+              "show_state": false
+            },
+            {
+              "type": "entities",
+              "title": "摄像头控制",
+              "state_color": true,
+              "entities": [
+                {
+                  "entity": "switch.living_room_privacy_mode",
+                  "name": "隐私模式（开 = 遮蔽画面）"
+                },
+                {
+                  "entity": "switch.living_room_record",
+                  "name": "录制"
+                },
+                {
+                  "entity": "switch.living_room_push_notifications",
+                  "name": "推送通知"
+                },
+                {
+                  "entity": "switch.living_room_auto_tracking",
+                  "name": "自动跟踪"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "mode": "storage"
+    }
+  }
+}

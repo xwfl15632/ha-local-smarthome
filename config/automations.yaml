@@ -1,0 +1,357 @@
+- id: zhuguan_chuangtou1_flip_menkou1
+  alias: 主卧床头开关1翻转门口开关1
+  triggers:
+  - trigger: state
+    entity_id: switch.chuang_tou_kai_guan_switch_1
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.men_kou_kai_guan_switch_1
+  mode: single
+  conditions: []
+- id: zhuguan_chuangtou2_flip_menkou2
+  alias: 主卧床头开关2翻转门口开关2
+  triggers:
+  - trigger: state
+    entity_id: switch.chuang_tou_kai_guan_switch_2
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.men_kou_kai_guan_switch_2
+  mode: single
+  conditions: []
+- id: echo_say_unmute_guard
+  alias: Echo Say 静音兜底
+  triggers:
+  - trigger: state
+    entity_id:
+    - script.echo_say
+    - script.echo_say_fast
+    to: 'off'
+  conditions:
+  - condition: state
+    entity_id: switch.esp32_s3_box_3_mute
+    state: 'on'
+  actions:
+  - delay: 00:00:02
+  - action: switch.turn_off
+    target:
+      entity_id: switch.esp32_s3_box_3_mute
+  mode: single
+- id: ab073472-206c-4987-81b6-131d0063e314
+  alias: 一楼楼梯感应开灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.yi_lou_lou_ti_occupancy
+    to: 'on'
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.er_lou_lou_ti_illumination
+      state: bright
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.er_lou_er_kai_er_chang_jing_switch_2
+  mode: single
+- id: 23ed1477-b0cc-405e-bf2c-e1b3ba3415e5
+  alias: 一楼楼梯无人关灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.yi_lou_lou_ti_occupancy
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.er_lou_er_kai_er_chang_jing_switch_2
+  mode: single
+- id: tts_auto_soundmode
+  alias: 播报自动切声场
+  description: 任何 TTS 播报(tts.speak 或 media_player 播放 media-source://tts)开始时自动运行 script.tian_long_bo_bao
+    切 MCH STEREO。仅匹配播报,音乐播放不触发。
+  triggers:
+  - trigger: event
+    event_type: call_service
+    event_data:
+      domain: tts
+      service: speak
+  - trigger: event
+    event_type: call_service
+    event_data:
+      domain: media_player
+      service: play_media
+  conditions:
+  - condition: template
+    value_template: '{{ trigger.event.data.service == ''speak'' or (trigger.event.data.service
+      == ''play_media'' and trigger.event.data.service_data is defined and trigger.event.data.service_data.media_content_id
+      is defined and ''tts'' in trigger.event.data.service_data.media_content_id)
+      }}'
+  actions:
+  - action: script.tian_long_bo_bao
+  mode: single
+- id: voice_satellite_stuck_watchdog
+  alias: 语音卫星卡死看门狗
+  description: BOX-3 语音卫星卡在 responding/thinking 超 3 分钟（通常 TTS 出音频失败导致会话无法正常收尾）时，自动
+    announce 复位并推送结果。解决 2026-08-29 16:37 卡死 8.5 小时、Okay Nabu 全部无反应的问题。
+  mode: single
+  max_exceeded: silent
+  triggers:
+  - trigger: state
+    entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+    to: responding
+    for: 00:03:00
+  - trigger: state
+    entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+    to: thinking
+    for: 00:03:00
+  actions:
+  - action: assist_satellite.announce
+    target:
+      entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+    data:
+      message: 语音助手刚才卡住了，我已自动恢复，请再说一次 Okay Nabu
+  - delay: 00:00:12
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+        state: idle
+      sequence:
+      - action: notify.mobile_app_phone
+        data:
+          title: 语音卫星已自动恢复
+          message: BOX-3 卡在 responding/thinking 超 3 分钟，看门狗 announce 复位成功，已回到 idle。可正常使用
+            Okay Nabu。
+    - conditions: []
+      sequence:
+      - action: notify.mobile_app_phone
+        data:
+          title: 语音卫星仍卡死（announce 复位失败）
+          message: BOX-3 announce 复位后仍未回 idle，大概率 TTS 引擎故障，请手动断电重启 ESP32 Box 3，或让我介入排查。
+  conditions: []
+- id: shufang_cunzai_kaideng
+  alias: 书房有人开灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_shu_fang_ci_chu_you_ren
+    to: 'on'
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id:
+      - switch.er_kai_er_chang_jing_zt_4_switch_1
+      - switch.er_kai_er_chang_jing_zt_4_switch_2
+  mode: single
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.fp310_shu_fang_zhao_du
+    below: 200
+- id: shufang_cunzai_guandeng
+  alias: 书房无人延时关灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_shu_fang_ci_chu_you_ren
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id:
+      - switch.er_kai_er_chang_jing_zt_4_switch_1
+      - switch.er_kai_er_chang_jing_zt_4_switch_2
+  mode: single
+- id: erlou_louti_ganying_kaideng
+  alias: 二楼楼梯感应开灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.er_lou_lou_ti_occupancy
+    to: 'on'
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.er_lou_lou_ti_illumination
+      state: bright
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.er_lou_er_kai_er_chang_jing_switch_2
+  mode: single
+- id: erlou_louti_wuren_guandeng
+  alias: 二楼楼梯无人关灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.er_lou_lou_ti_occupancy
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.er_lou_er_kai_er_chang_jing_switch_2
+  mode: single
+- id: shufang_mingliang_guandeng
+  alias: 书房明亮自动关灯
+  triggers:
+  - trigger: time_pattern
+    minutes: /2
+  - trigger: numeric_state
+    entity_id: sensor.fp310_shu_fang_zhao_du
+    above: 500
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.fp310_shu_fang_zhao_du
+    above: 500
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: switch.er_kai_er_chang_jing_zt_4_switch_1
+      state: 'on'
+    - condition: state
+      entity_id: switch.er_kai_er_chang_jing_zt_4_switch_2
+      state: 'on'
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id:
+      - switch.er_kai_er_chang_jing_zt_4_switch_1
+      - switch.er_kai_er_chang_jing_zt_4_switch_2
+  mode: single
+- id: boya_bimai
+  alias: 语音播报闭麦
+  description: satellite 进入 responding(播报中)→闭麦
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+    to: responding
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.esp32_s3_box_3_mute
+- id: boya_kaimai
+  alias: 语音播报完开麦
+  description: satellite 回到 idle(播报结束)→开麦, 可继续追问
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: assist_satellite.esp32_s3_box_3_assist_satellite
+    to: idle
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.esp32_s3_box_3_mute
+- id: bei_yang_tai_you_ren_kai_deng
+  alias: 北阳台有人开灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_bei_yong_ci_chu_you_ren
+    to: 'on'
+  actions:
+  - action: light.turn_on
+    target:
+      entity_id:
+      - light.bei_yang_tai_deng_104
+      - light.bei_yang_tai_deng_105
+      - light.bei_yang_tai_deng_106
+      - light.bei_yang_tai_deng_107
+  mode: single
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.fp310_bei_yong_zhao_du
+    below: 200
+- id: bei_yang_tai_wu_ren_guan_deng
+  alias: 北阳台无人延时关灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_bei_yong_ci_chu_you_ren
+    to: 'off'
+    for:
+      seconds: 2
+  conditions: []
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.bei_yang_tai_deng_104
+      - light.bei_yang_tai_deng_105
+      - light.bei_yang_tai_deng_106
+      - light.bei_yang_tai_deng_107
+  mode: single
+- id: chu_fang_you_ren_kai_deng
+  alias: 厨房有人开灯
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_chu_fang_ci_chu_you_ren
+    to: 'on'
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id:
+      - switch.yi_lu_fu_he_kai_guan_zt_2_switch_1
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.fp310_chu_fang_zhao_du
+    below: 200
+- id: chu_fang_wu_ren_guan_deng
+  alias: 厨房无人延时关灯
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.fp310_chu_fang_ci_chu_you_ren
+    to: 'off'
+    for:
+      seconds: 2
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id:
+      - switch.yi_lu_fu_he_kai_guan_zt_2_switch_1
+- id: yangtai_ganying_kaideng
+  alias: 阳台感应开灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.yang_tai_ren_ti_gan_ying_occupancy
+    to: 'on'
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.yang_tai_ren_ti_gan_ying_illumination
+      state: bright
+  actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.yi_lu_fu_he_kai_guan_zt_switch_1
+  mode: single
+- id: yangtai_wuren_guandeng
+  alias: 阳台无人关灯
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.yang_tai_ren_ti_gan_ying_occupancy
+    to: 'off'
+    for:
+      seconds: 2
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.yi_lu_fu_he_kai_guan_zt_switch_1
+  mode: single

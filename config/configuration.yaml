@@ -1,0 +1,656 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+# ===== 窗帘方向修正（HA 2026.8 tuya 回归 workaround，2026-08-08）=====
+template:
+  - cover:
+      - name: "次卧窗纱"
+        unique_id: rev_chuang_sha_curtain
+        state: >
+          {% if states('cover.chuang_sha_curtain') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_sha_curtain
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_sha_curtain
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_sha_curtain
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_sha_curtain
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_sha_curtain', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "次卧窗帘"
+        unique_id: rev_chuang_lian_curtain
+        state: >
+          {% if states('cover.chuang_lian_curtain') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_lian_curtain
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_lian_curtain
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_lian_curtain
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_lian_curtain
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_lian_curtain', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "主卧窗纱"
+        unique_id: rev_chuang_sha_curtain_2
+        state: >
+          {% if states('cover.chuang_sha_curtain_2') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_2
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_2
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_2
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_sha_curtain_2
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_sha_curtain_2', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "主卧窗帘"
+        unique_id: rev_chuang_lian_curtain_2
+        state: >
+          {% if states('cover.chuang_lian_curtain_2') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_2
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_2
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_2
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_lian_curtain_2
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_lian_curtain_2', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "书房窗纱"
+        unique_id: rev_chuang_sha_curtain_3
+        state: >
+          {% if states('cover.chuang_sha_curtain_3') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_3
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_3
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_3
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_sha_curtain_3
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_sha_curtain_3', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "书房窗帘"
+        unique_id: rev_chuang_lian_curtain_3
+        state: >
+          {% if states('cover.chuang_lian_curtain_3') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_3
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_3
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_3
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_lian_curtain_3
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_lian_curtain_3', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "客厅窗帘"
+        unique_id: rev_chuang_lian_curtain_4
+        state: >
+          {% if states('cover.chuang_lian_curtain_4') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_4
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_4
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_4
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_lian_curtain_4
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_lian_curtain_4', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "餐厅卷帘"
+        # 9/12 修正：实测（用户目视确认）底层 cover.juan_lian_curtain 语义未反相——
+        # 对底层发 open 时卷帘物理上确实是「开」，原先的 rev（反相）写法与事实相反：
+        # 一旦被意图匹配到，"打开"会被执行成物理关闭。故改为直通（pass-through）。
+        unique_id: rev_juan_lian_curtain
+        state: "{{ states('cover.juan_lian_curtain') }}"
+        open_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.juan_lian_curtain
+        close_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.juan_lian_curtain
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.juan_lian_curtain
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.juan_lian_curtain
+          data:
+            position: "{{ position }}"
+        position: >
+          {% set p = state_attr('cover.juan_lian_curtain', 'current_position') %}
+          {{ p if p is not none else none }}
+
+  - cover:
+      - name: "客卧窗纱"
+        unique_id: rev_chuang_sha_curtain_4
+        state: >
+          {% if states('cover.chuang_sha_curtain_4') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_4
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_4
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_sha_curtain_4
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_sha_curtain_4
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_sha_curtain_4', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "客卧窗帘"
+        unique_id: rev_chuang_lian_curtain_5
+        state: >
+          {% if states('cover.chuang_lian_curtain_5') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_5
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_5
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.chuang_lian_curtain_5
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.chuang_lian_curtain_5
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.chuang_lian_curtain_5', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+  - cover:
+      - name: "北阳台窗纱"
+        unique_id: rev_asdchuang_lian_dian_ji_16_curtain
+        state: >
+          {% if states('cover.asdchuang_lian_dian_ji_16_curtain') == 'open' %}closed
+          {% else %}open{% endif %}
+        open_cover:
+          action: cover.close_cover
+          target:
+            entity_id: cover.asdchuang_lian_dian_ji_16_curtain
+        close_cover:
+          action: cover.open_cover
+          target:
+            entity_id: cover.asdchuang_lian_dian_ji_16_curtain
+        stop_cover:
+          action: cover.stop_cover
+          target:
+            entity_id: cover.asdchuang_lian_dian_ji_16_curtain
+        set_cover_position:
+          action: cover.set_cover_position
+          target:
+            entity_id: cover.asdchuang_lian_dian_ji_16_curtain
+          data:
+            position: "{{ 100 - position }}"
+        position: >
+          {% set p = state_attr('cover.asdchuang_lian_dian_ji_16_curtain', 'current_position') %}
+          {{ (100 - p) if p is not none else none }}
+
+adaptive_lighting:
+  - name: 全屋自适应
+    lights:
+      - light.ba_tai_66
+      - light.ba_tai_67
+      - light.bei_yang_tai_deng_104
+      - light.bei_yang_tai_deng_105
+      - light.bei_yang_tai_deng_106
+      - light.bei_yang_tai_deng_107
+      - light.bing_xiang
+      - light.bqshuang_se_deng_dai_z5005w_10
+      - light.bqshuang_se_deng_dai_z5005w_3
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_120
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_121
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_122
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_123
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_128
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_129
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_130
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_131
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_132
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_133
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_134
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_135
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_64
+      - light.bqshuang_se_mi_ni_heng_liu_z160001w_65
+      - light.can_deng_83
+      - light.can_deng_84
+      - light.can_deng_85
+      - light.cha_ji_deng_86
+      - light.cha_ji_deng_87
+      - light.cha_ji_deng_88
+      - light.chu_fang_deng_91
+      - light.chu_fang_deng_92
+      - light.chu_fang_deng_93
+      - light.chu_fang_deng_94
+      - light.chu_fang_deng_95
+      - light.chuang_chuang_ji_deng_dai_45
+      - light.chuang_ju_deng_44
+      - light.chuang_lian_deng_dai
+      - light.chuang_lian_deng_dai_2
+      - light.chuang_lian_deng_dai_8
+      - light.chuang_tai
+      - light.deng_dai_9
+      - light.er_lou_guo_dao_deng_108
+      - light.er_lou_guo_dao_deng_110
+      - light.er_lou_guo_dao_deng_111
+      - light.esp32_s3_box_3_lcd_backlight
+      - light.huan_chuang_62
+      - light.huan_chuang_you_50
+      - light.huan_chuang_zhong_47
+      - light.huan_chuang_zuo_49
+      - light.huan_deng_100
+      - light.huan_deng_101
+      - light.huan_deng_102
+      - light.huan_deng_103
+      - light.huan_deng_72
+      - light.huan_deng_73
+      - light.huan_deng_74
+      - light.huan_deng_75
+      - light.huan_deng_76
+      - light.huan_deng_77
+      - light.huan_deng_78
+      - light.huan_deng_79
+      - light.huan_deng_80
+      - light.huan_ju_chuang_60
+      - light.huan_ju_you_51
+      - light.huan_ju_you_63
+      - light.huan_ju_zhong_46
+      - light.huan_ju_zhong_59
+      - light.huan_ju_zuo_48
+      - light.huan_men_58
+      - light.huan_tou_61
+      - light.lou_ti_deng_109
+      - light.lou_ti_deng_112
+      - light.lou_ti_deng_113
+      - light.lou_ti_deng_114
+      - light.men_deng_96
+      - light.men_deng_97
+      - light.she_deng
+      - light.she_deng_98
+      - light.she_deng_99
+      - light.tai_pen
+      - light.yang_tai_deng_89
+      - light.yang_tai_deng_90
+      - light.yang_tai_deng_dai_7
+      - light.yi_lou_guo_dao_68
+      - light.yi_lou_guo_dao_69
+      - light.yi_lou_guo_dao_70
+      - light.yi_lou_guo_dao_71
+      - light.zao
+      - light.zhong_43
+      - light.zhong_chuang_deng_55
+      - light.zhong_yang
+      - light.zhong_you_deng_41
+      - light.zhong_you_deng_52
+      - light.zhong_zhong_deng_54
+      - light.zhong_zhong_deng_56
+      - light.zhong_zhuo_deng_57
+      - light.zhong_zuo_deng_42
+      - light.zhong_zuo_deng_53
+      - light.zhu_deng_dai
+    interval: 90
+    transition: 45
+    min_brightness: 30
+    max_brightness: 100
+    min_color_temp: 2700
+    max_color_temp: 5500
+    take_over_control: true
+    skip_redundant_commands: true
+    intercept: true
+
+
+mqtt:
+  - binary_sensor:
+      name: 一楼楼梯人体感应器 有人检测
+      unique_id: 0x54ef4410013f9edb_occupancy_fix
+      state_topic: zigbee2mqtt/一楼楼梯人体感应器
+      value_template: "{{ value_json.occupancy }}"
+      payload_on: "1"
+      payload_off: "0"
+      device_class: occupancy
+      device:
+        identifiers:
+          - zigbee2mqtt_0x54ef4410013f7cf9
+        name: 一楼楼梯人体感应器
+        manufacturer: Aqara
+        model: Motion sensor E1
+
+# ═══════════════════════════════════════════════════════════
+# 本地语音 Intent（精确匹配，绕开 LLM/云端）
+# 添加: 2026-09-01 | 回滚: 删除此块 + 重启（或 conversation.reload_intents + intent_script.reload）
+# ═══════════════════════════════════════════════════════════
+
+conversation:
+  intents:
+    OutsideWeather:
+      - "外面天气怎么样"
+      - "外面天气如何"
+      - "今天天气怎么样"
+      - "今天天气如何"
+      - "现在外面天气"
+      - "天气怎么样"
+      - "外面什么天气"
+      - "今天外面天气怎么样"
+      - "现在天气怎么样"
+      - "外面气温多少"
+      - "现在外面气温多少度"
+    RoomTempHumidity:
+      - "房间里面的温度和湿度是多少"
+      - "房间的温度和湿度"
+      - "屋里温度多少"
+      - "屋里温度和湿度"
+      - "室内温度多少"
+      - "室内温度和湿度"
+      - "房间温度多少"
+      - "客厅温度多少"
+      - "书房温度多少"
+      - "家里温度多少"
+      - "现在室温多少"
+      - "现在室内温度"
+      - "家里温度和湿度"
+      - "客厅温湿度"
+      - "书房温湿度"
+
+    QueryStudyCurtain:
+      - "书房窗帘开了吗"
+      - "书房窗帘开着吗"
+      - "书房窗帘打开没有"
+      - "书房窗帘开了没"
+      - "书房窗帘是什么状态"
+      - "书房窗帘什么状态"
+    QueryStudySheer:
+      - "书房窗纱开了吗"
+      - "书房窗纱开着吗"
+      - "书房窗纱打开没有"
+      - "书房窗纱开了没"
+      - "书房窗纱是什么状态"
+      - "书房窗纱什么状态"
+    OpenStudyCurtain:
+      - "打开书房窗帘"
+      - "把书房窗帘打开"
+      - "开书房窗帘"
+      - "书房窗帘打开"
+      - "开下书房窗帘"
+    CloseStudyCurtain:
+      - "关闭书房窗帘"
+      - "把书房窗帘关上"
+      - "关书房窗帘"
+      - "书房窗帘关闭"
+      - "关上书房窗帘"
+    OpenStudySheer:
+      - "打开书房窗纱"
+      - "把书房窗纱打开"
+      - "开书房窗纱"
+      - "书房窗纱打开"
+      - "开下书房窗纱"
+    CloseStudySheer:
+      - "关闭书房窗纱"
+      - "把书房窗纱关上"
+      - "关书房窗纱"
+      - "书房窗纱关闭"
+      - "关上书房窗纱"
+    OpenLivingRoomCurtain:
+      - "打开客厅窗帘"
+      - "把客厅窗帘打开"
+      - "开客厅窗帘"
+      - "客厅窗帘打开"
+      - "开下客厅窗帘"
+    CloseLivingRoomCurtain:
+      - "关闭客厅窗帘"
+      - "把客厅窗帘关上"
+      - "关客厅窗帘"
+      - "客厅窗帘关闭"
+      - "关上客厅窗帘"
+    OpenMovieMode:
+      - "打开观影模式"
+      - "开启观影模式"
+      - "开观影模式"
+      - "进入观影模式"
+      - "打开观影"
+      - "开观影"
+      - "观影模式开一下"
+      - "打开投影模式"
+      - "开启投影模式"
+      - "开投影模式"
+      - "进入投影模式"
+      - "打开投影"
+      - "开投影"
+      - "投影模式开一下"
+    CloseMovieMode:
+      - "关闭观影模式"
+      - "退出观影模式"
+      - "结束观影模式"
+      - "观影结束"
+      - "关闭观影"
+      - "退出观影"
+      - "观影模式关掉"
+      - "关闭投影模式"
+      - "退出投影模式"
+      - "结束投影模式"
+      - "投影模式关掉"
+    CloseCamera:
+      - "关闭摄像头"
+      - "把摄像头关掉"
+      - "关上摄像头"
+      - "摄像头关掉"
+      - "摄像头关上"
+      - "关掉摄像头"
+      - "关闭客厅摄像头"
+      - "把客厅摄像头关掉"
+    OpenCamera:
+      - "打开摄像头"
+      - "打开客厅摄像头"
+      - "把摄像头打开"
+      - "开启摄像头"
+      - "摄像头打开"
+      - "恢复摄像头"
+      - "恢复摄像头画面"
+intent_script:
+  OutsideWeather:
+    speech:
+      text: "{{ states.weather.forecast_wo_de_jia.attributes.temperature | round(0, 'floor') }}度，{%- if states.weather.forecast_wo_de_jia.state in ('sunny','clear') %}晴{%- elif states.weather.forecast_wo_de_jia.state in ('cloudy','partlycloudy','partly_cloudy') %}多云{%- elif states.weather.forecast_wo_de_jia.state == 'rainy' %}有雨{%- elif states.weather.forecast_wo_de_jia.state == 'showers' %}有阵雨{%- elif states.weather.forecast_wo_de_jia.state in ('pouring','thunderstorms') %}大雨{%- elif states.weather.forecast_wo_de_jia.state == 'snowy' %}有雪{%- elif states.weather.forecast_wo_de_jia.state == 'hail' %}冰雹{%- elif states.weather.forecast_wo_de_jia.state == 'foggy' %}有雾{%- elif states.weather.forecast_wo_de_jia.state == 'windy' %}大风{%- else %}{{ states.weather.forecast_wo_de_jia.state }}{%- endif %}，湿度{{ states.weather.forecast_wo_de_jia.attributes.humidity }}%。"
+  RoomTempHumidity:
+    speech:
+      text: "客厅温度{{ states('sensor.ke_ting_esp32_s3_box_3_648870_temperature') | float(0) | round(1) }}度，湿度{{ states('sensor.ke_ting_esp32_s3_box_3_648870_humidity') | float(0) | round(0) }}%；书房温度{{ states('sensor.shu_fang_cun_zai_jian_ce_temperature') | float(0) | round(1) }}度，湿度{{ states('sensor.shu_fang_cun_zai_jian_ce_humidity') | float(0) | round(0) }}%。"
+
+  QueryStudyCurtain:
+    speech:
+      text: "书房窗帘{%- set s = states('cover.shu_fang_chuang_lian') -%}{%- if s == 'open' -%}开着。{%- elif s == 'closed' -%}关着。{%- elif s == 'opening' -%}正在打开。{%- elif s == 'closing' -%}正在关闭。{%- else -%}状态{{ s }}。{%- endif -%}"
+  QueryStudySheer:
+    speech:
+      text: "书房窗纱{%- set s = states('cover.shu_fang_chuang_sha') -%}{%- if s == 'open' -%}开着。{%- elif s == 'closed' -%}关着。{%- elif s == 'opening' -%}正在打开。{%- elif s == 'closing' -%}正在关闭。{%- else -%}状态{{ s }}。{%- endif -%}"
+  OpenStudyCurtain:
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.shu_fang_chuang_lian
+    speech:
+      text: "好的，正在打开书房窗帘。"
+  CloseStudyCurtain:
+    action:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.shu_fang_chuang_lian
+    speech:
+      text: "好的，正在关闭书房窗帘。"
+  OpenStudySheer:
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.shu_fang_chuang_sha
+    speech:
+      text: "好的，正在打开书房窗纱。"
+  CloseStudySheer:
+    action:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.shu_fang_chuang_sha
+    speech:
+      text: "好的，正在关闭书房窗纱。"
+  OpenLivingRoomCurtain:
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.ke_ting_chuang_lian
+    speech:
+      text: "好的，正在打开客厅窗帘。"
+  CloseLivingRoomCurtain:
+    action:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.ke_ting_chuang_lian
+    speech:
+      text: "好的，正在关闭客厅窗帘。"
+  OpenMovieMode:
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.guan_ying_mo_shi
+    speech:
+      text: "好的，正在开启观影模式，拉上窗帘、调暗灯光、打开投影。"
+  CloseMovieMode:
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.guan_ying_jie_shu
+    speech:
+      text: "好的，正在退出观影模式，恢复灯光和窗帘。"
+  CloseCamera:
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.living_room_privacy_mode
+    speech:
+      text: "好的，摄像头已关闭，镜头已遮蔽。"
+  OpenCamera:
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.living_room_privacy_mode
+    speech:
+      text: "好的，摄像头已打开。"
