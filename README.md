@@ -124,5 +124,5 @@ HA 与设备 SSH 都经 VPS 的 frp 反向隧道暴露到外网，家里是 NAT 
 ## 如何复用
 1. 把 `config/` 下 YAML 拷进你的 HA `config/` 目录（先备份原配置）。
 2. 实体 ID 是按你家的房间/设备拼音命名的——**需要改成你自己的实体**。
-3. 按 `docs/DESSENSITIZATION.md` 把占位符（`ANNOUNCE_PROXY_HOST`、`CHANGE_ME_...`）填回你自己的值。
+3. `scripts.yaml` 里的占位符（`ANNOUNCE_PROXY_HOST`、`CHANGE_ME_...`）填回你自己的值。
 4. 语音链路依赖的本地 GPU 服务（STT/TTS/LLM）需自行部署，本仓库不含其源码。
