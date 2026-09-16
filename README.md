@@ -1,8 +1,7 @@
 # 全本地 Home Assistant 智能家居
 
 一套**完全离线 / 全本地**的 Home Assistant 部署：本地语音助手（唤醒→STT→本地 LLM→本地 TTS，零云）、
-全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱。所有配置文件已脱敏，
-**不含任何真实凭据、私网 IP、个人信息**（见 [`docs/DESSENSITIZATION.md`](docs/DESSENSITIZATION.md)）。
+全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱。
 
 > 开源范围 = **架构 + HA 配置 + 踩坑归档**（技术博客式）。
 > 不含：硬件采购清单、自研 Python 服务源码（announce-proxy / 录像 / 人脸识别等）。
