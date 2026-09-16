@@ -1,45 +1,45 @@
-# 全本地 Home Assistant 智能家居
+# 家庭 Home Assistant 智能家居（HA on N305）
 
-一套**完全离线 / 全本地**的 Home Assistant 部署：本地语音助手（唤醒→STT→本地 LLM→本地 TTS，零云）、
-全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱。
-
-> 开源范围 = **架构 + HA 配置 + 踩坑归档**（技术博客式）。
-> 不含：硬件采购清单、自研 Python 服务源码（announce-proxy / 录像 / 人脸识别等）。
+一套以本地为主的 Home Assistant 部署：语音助手（唤醒→STT→LLM→TTS）、
+全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱、视频智能化。
 
 ---
 
 ## 整体架构
 
 ```
-                        ┌────────────────────────────┐
-                        │   Home Assistant (N305)     │
-                        │   config 见 config/ 目录     │
-                        │  ┌──────────────────────┐  │
-                        │  │  Assist (语音卫星)      │  │
-                        │  │  automations/scripts   │  │
-                        │  │  adaptive_lighting     │  │
-                        │  └──────────────────────┘  │
-                        └───────┬────────────────────┘
-        ┌───────────────────────┼───────────────────────────┐
-        │                       │                            │
-┌───────▼───────┐      ┌────────▼────────┐          ┌────────▼────────┐
-│ ESPHome        │      │ MQTT broker      │          │ 语音后端 (本地 GPU)│
-│ 多个 ESP32-S3   │      │ + Zigbee2MQTT    │          │  STT  whisper.cpp │
-│ 语音卫星/灯/开关 │      │ + M200 Zigbee→   │          │  TTS  (wyoming)   │
-│ (ESPHome)      │      │   Matter 桥       │          │  LLM  (本地大模型)  │
-└───────────────┘      └──────────────────┘          └──────────────────┘
-        │
-┌───────▼───────────────────────────────────────────────────────────────┐
-│  设备层：Tuya 智能开关/灯(云) · M200 Zigbee 传感器 · Denon 功放(HEOS)      │
-│          Reolink 摄像头(RTSP) · 投影/电视(AppleTV/AirPlay) · 当贝盒子(IR)  │
-└───────────────────────────────────────────────────────────────────────┘
-        │
-┌───────▼───────┐
-│  VPS (frps)    │  反向隧道：外网远程访问 HA + 设备 SSH
-└───────────────┘
+                             +--------------------------------+
+                             |      Home Assistant (N305)     |
+                             |  Assist / automations / scripts |
+                             |  adaptive_lighting / intents    |
+                             +---------------+----------------+
+                                             |
+        +------------------------------------+------------------------------------+
+        |                                    |                                    |
++-------v-----------+          +-------------v-------------+          +-----------v------------+
+| ESPHome           |          | MQTT broker               |          | Voice backends (GPU)   |
+| ESP32-S3 x N      |          | + Zigbee2MQTT             |          | STT  whisper large-v3  |
+| satellite/light/  |          | + M200 Zigbee->Matter     |          | TTS  Breeze-TTS 2.0    |
+| switch            |          |                           |          | LLM  cloud Qwen (local |
++-------------------+          +---------------------------+          |     LLM not enabled)   |
+                                                                      +------------------------+
+        |
++-------v-----------------------------------------------------------------------------+
+| Devices: Tuya switches/lights/covers (official Tuya integration, cloud)             |
+|         M200 Zigbee sensors | Denon AVR-X4700H amp (living) | HEOS (study)         |
+|         Reolink camera (RTSP) | TV (AirPlay) | Dangbei projector (IR) | ESP32 zones |
++----------------------------------+--------------------------------------------------+
+                                   |
++----------------------------------+----------------+
+| VPS (frps): remote access to HA + device SSH      |
++---------------------------------------------------+
 ```
 
-核心原则：**能本地绝不上云**。语音链路全在本机 GPU 上跑，HA 只是编排层。
+图例：语音后端 = STT（whisper large-v3）+ TTS（Breeze-TTS 2.0）均本地 GPU、wyoming 协议；
+LLM 当前为云端 Qwen Flash（本地 LLM 暂未启用，见第 1 节）。设备层经官方 Tuya 集成云端接入；
+当贝是**投影**（IR 遥控）；功放两台：Denon 4700H（客厅）+ HEOS（书房）。
+
+核心原则：**能本地就本地**。STT/TTS 与视频智能化跑在本机 GPU 上，LLM 暂用云端（见第 1 节）；HA 是编排层。
 
 ---
 
@@ -56,10 +56,15 @@
 
 ## 关键设计与踩坑
 
-### 1. 全本地语音链路
-唤醒词在 ESP32 上跑，之后整条链路零云：
-`STT(whisper.cpp, wyoming) → 本地 LLM(assist) → TTS(wyoming) → 多音区播放`。
-好处是隐私 + 延迟可控 + 断网可用；代价是每段都要自己调优。
+### 1. 语音链路
+唤醒词在 ESP32 上跑，链路：
+`STT(whisper large-v3, wyoming) → LLM(assist) → TTS(Breeze-TTS 2.0, wyoming) → 多音区播放`。
+
+- **STT / TTS 全本地**（本地 GPU 上的 whisper large-v3 + Breeze-TTS 2.0，走 wyoming 协议），
+  隐私 + 延迟可控 + 断网可用。
+- **LLM 当前用云端 Qwen Flash**（考虑延迟，本地 LLM 暂未启用）。
+  有条件建议启用本地 LLM 以确保零云——本地 LLM 的算力/延迟调优达标后再切，
+  切换只改 assist 的 language model，链路其余部分不动。
 
 ### 2. echo_say 流式 TTS（快路径 + 兜底）
 `scripts.yaml` 的 `echo_say_fast` 是这套系统里最复杂的脚本，设计目标：**一次合成、渐进流式推给全屋多个音箱**，避免逐台合成带来的延迟叠加。
@@ -76,6 +81,10 @@
 > 兜底没有"的不对称——改播放器时两处都要动。
 
 ### 3. 窗帘反相模板
+Tuya 设备（灯/开关/窗帘）全部经 **HA 官方 Tuya 集成（Tuya 网关，即智能生活 App
+账号 / 涂鸦网关）云端接入**——不走 LocalTuya：家里大量 Tuya 设备是子设备
+（无独立 LAN IP），本地化接不进来。
+
 Tuya 窗帘的 position 语义与 HA 标准相反（0=全开 / 100=全关，或方向相反）。
 `configuration.yaml` 里用 `template` cover 包一层，把 position 取反后再暴露给上层，
 这样自动化/脚本里就不用到处写 `100 - position`。
@@ -86,7 +95,7 @@ Tuya 窗帘的 position 语义与 HA 标准相反（0=全开 / 100=全关，或�
 ### 4. 本地 LLM intent 路由（精确匹配绕 LLM）
 对高频、语义确定的指令（如"关灯""打开观影模式"），用 `conversation` intent 的
 **精确/正则匹配**直接命中，不经过 LLM 推理。好处是**确定、零延迟、不烧算力**；
-只有模糊指令才 fallback 到本地大模型。
+只有模糊指令才 fallback 到 LLM（当前为云端 Qwen，见第 1 节）。
 
 ### 5. 语音卫星卡死看门狗
 `automations.yaml` 的 `voice_satellite_stuck_watchdog`：assist_satellite 卡在
@@ -95,8 +104,10 @@ Tuya 窗帘的 position 语义与 HA 标准相反（0=全开 / 100=全关，或�
 > 踩坑来源：某次 TTS 故障导致卫星卡死 8.5 小时、"Okay Nabu" 全无反应，才加的这道保险。
 
 ### 6. 观影模式脚本
-`scripts.yaml` 的 `guan_ying_mo_shi`：投影上电 → IR 遥控进主页 → 电视开 → 功放开 →
-切输入源 → 关主灯、留氛围灯(15%) → 开 adaptive_lighting manual_control → 关阳台/过道 → 关帘。
+`scripts.yaml` 的 `guan_ying_mo_shi`：当贝投影上电（唯一关机路径是 IR）→ IR 遥控进主页 →
+电视开 → 客厅功放(Denon AVR-X4700H)开并切输入源 → 关主灯、留氛围灯(15%) →
+开 adaptive_lighting manual_control → 关阳台/过道 → 关帘。
+（功放共两台：Denon 4700H 在客厅、HEOS 在书房；观影只动客厅这台。）
 结束脚本做逆操作，并按日落时间决定是否开帘。
 > 踩坑：灯 `unavailable` 等待要用 `wait_template` 给足 timeout 并 `continue_on_timeout`，
 > 否则个别灯慢上线会让整个脚本卡住。
@@ -118,11 +129,24 @@ HA 走 RTSP 接入（`camera.*`），隐私模式 = 开遮蔽 + 停录像。人�
 HA 与设备 SSH 都经 VPS 的 frp 反向隧道暴露到外网，家里是 NAT 后无法直连。
 隧道状态 ≠ 后端存活（端口 OPEN 不代表服务活），排障要逐层验证。
 
----
+### 11. 视频采集与智能化（Reolink + 本地 GPU）
+HA 的 Reolink 集成只出 RTSP 流和"有人"二值信号，人数/认脸在 HA 之外另起本地服务：
 
+- **人数检测**：盯 HA 的 `binary_sensor.living_room_person`，有人时抓帧给本地
+  视觉语言模型数人头（秒级），人在场期间每 30 秒复检（覆盖"第 3 人悄悄进来"）。
+- **人脸识别**：InsightFace（CPU 跑，不占 GPU），家庭成员人脸库入库 +
+  留一验证定阈值，识别出的名字直接拼进通知。
+- **多人录像联动**：检测到 ≥3 人 → 推送通知 + 远端拉起 NAS 上的 ffmpeg 录像
+  （RTSP 直拉、`-c copy` 不转码）；人走或录满 10 分钟自动停。
+- 隐私边界：摄像头在 HA 里可开遮蔽模式；录像落 NAS 外置盘，NAS cron 定期清理。
+
+> 设计原则：HA 只做"触发源"（presence 信号），重活（数人头/认脸/录像）全在
+> 本地 GPU 和 NAS 上，家用 NVR 没有的 AI 能力自己补。
+
+---
 
 ## 如何复用
 1. 把 `config/` 下 YAML 拷进你的 HA `config/` 目录（先备份原配置）。
 2. 实体 ID 是按你家的房间/设备拼音命名的——**需要改成你自己的实体**。
 3. `scripts.yaml` 里的占位符（`ANNOUNCE_PROXY_HOST`、`CHANGE_ME_...`）填回你自己的值。
-4. 语音链路依赖的本地 GPU 服务（STT/TTS/LLM）需自行部署，本仓库不含其源码。
+4. 语音链路依赖的本地 GPU 服务（STT/TTS）需自行部署，LLM（本地或云端）自行配置，本仓库不含服务源码。
