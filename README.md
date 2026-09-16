@@ -1,38 +1,39 @@
-# 家庭 Home Assistant 智能家居（HA on N305）
+# 家庭 Home Assistant 智能家居
 
 一套以本地为主的 Home Assistant 部署：语音助手（唤醒→STT→LLM→TTS）、
 全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱、视频智能化。
+
+HA 以 **Docker 方式运行在家庭 NAS 的 fnOS** 上；本地影音系统采用 **Jellyfin**。
 
 ---
 
 ## 整体架构
 
 ```
-                             +--------------------------------+
-                             |      Home Assistant (N305)     |
-                             |  Assist / automations / scripts |
-                             |  adaptive_lighting / intents    |
-                             +---------------+----------------+
-                                             |
-        +------------------------------------+------------------------------------+
-        |                                    |                                    |
-+-------v-----------+          +-------------v-------------+          +-----------v------------+
-| ESPHome           |          | MQTT broker               |          | Voice backends (GPU)   |
-| ESP32-S3 x N      |          | + Zigbee2MQTT             |          | STT  whisper large-v3  |
-| satellite/light/  |          | + M200 Zigbee->Matter     |          | TTS  Breeze-TTS 2.0    |
-| switch            |          |                           |          | LLM  cloud Qwen (local |
-+-------------------+          +---------------------------+          |     LLM not enabled)   |
-                                                                      +------------------------+
-        |
-+-------v-----------------------------------------------------------------------------+
-| Devices: Tuya switches/lights/covers (official Tuya integration, cloud)             |
-|         M200 Zigbee sensors | Denon AVR-X4700H amp (living) | HEOS (study)         |
-|         Reolink camera (RTSP) | TV (AirPlay) | Dangbei projector (IR) | ESP32 zones |
-+----------------------------------+--------------------------------------------------+
-                                   |
-+----------------------------------+----------------+
-| VPS (frps): remote access to HA + device SSH      |
-+---------------------------------------------------+
+                                  +----------------------------------+
+                                  | Home Assistant (Docker on fnOS)  |
+                                  | Assist / automations / scripts   |
+                                  | adaptive_lighting / intents      |
+                                  +----------------------------------+
+                                                    |
+             +-------------------------------------------------------------------------+
+             v                                  v                                     v
++------------------------+         +------------------------+            +-------------------------+
+| ESPHome (ESP32-S3 x N) |         | MQTT broker            |            | Voice backends (GPU)    |
+| satellite / light /    |         | Zigbee2MQTT            |            | STT  whisper large-v3   |
+| switch                 |         | M200 Zigbee -> Matter  |            | TTS  Breeze-TTS 2.0     |
++------------------------+         +------------------------+            | LLM  cloud Qwen (Flash) |
+                                                                         +-------------------------+
+                                                    |
+     +--------------------------------------------------------------------------------------------+
+     | Devices: Tuya switches/lights/covers (official Tuya integration, cloud)                    |
+     | M200 Zigbee sensors | Denon AVR-X4700H amp (living) | HEOS (study)                         |
+     | Reolink camera (RTSP) | TV (AirPlay) | Dangbei projector (IR) | ESP32 zones                |
+     +--------------------------------------------------------------------------------------------+
+                                                    |
+                           +------------------------------------------------+
+                           | VPS (frps): remote access to HA + device SSH   |
+                           +------------------------------------------------+
 ```
 
 图例：语音后端 = STT（whisper large-v3）+ TTS（Breeze-TTS 2.0）均本地 GPU、wyoming 协议；
