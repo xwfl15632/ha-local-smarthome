@@ -1,10 +1,10 @@
-# 全本地 Home Assistant 智能家居（脱敏开源）
+# 全本地 Home Assistant 智能家居
 
 一套**完全离线 / 全本地**的 Home Assistant 部署：本地语音助手（唤醒→STT→本地 LLM→本地 TTS，零云）、
 全屋灯光/窗帘、观影模式、Reolink 摄像头、多音区音箱。所有配置文件已脱敏，
 **不含任何真实凭据、私网 IP、个人信息**（见 [`docs/DESSENSITIZATION.md`](docs/DESSENSITIZATION.md)）。
 
-> 开源范围 = **架构 + 脱敏 HA 配置 + 踩坑归档**（技术博客式）。
+> 开源范围 = **架构 + HA 配置 + 踩坑归档**（技术博客式）。
 > 不含：硬件采购清单、自研 Python 服务源码（announce-proxy / 录像 / 人脸识别等）。
 
 ---
@@ -52,7 +52,6 @@
 | [`config/automations.yaml`](config/automations.yaml) | 自动化：感应开/关灯（楼梯/书房/阳台/厨房）、**语音卫星卡死看门狗**、播报切声场 |
 | [`config/scripts.yaml`](config/scripts.yaml) | 脚本：**echo_say 流式 TTS**（快路径+兜底）、**观影模式**、全屋/分房关灯、投影 IR 遥控 |
 | [`config/lovelace_dashboards.json`](config/lovelace_dashboards.json) | 仪表盘（Lovelace UI） |
-| [`docs/DESSENSITIZATION.md`](docs/DESSENSITIZATION.md) | 脱敏清单：移除了什么、为什么 |
 
 ---
 
@@ -122,10 +121,6 @@ HA 与设备 SSH 都经 VPS 的 frp 反向隧道暴露到外网，家里是 NAT 
 
 ---
 
-## 脱敏说明
-发布前移除了所有真实凭据与个人信息，**逐条记录见 [`docs/DESSENSITIZATION.md`](docs/DESSENSITIZATION.md)**。
-原则：`.storage/`（含全部集成凭据）、数据库、日志、备份、媒体**一律不入库**；
-入库的 YAML 里仅做最小替换（内网 IP / API key / 手机型号 / 姓氏 → 占位符）。
 
 ## 如何复用
 1. 把 `config/` 下 YAML 拷进你的 HA `config/` 目录（先备份原配置）。
